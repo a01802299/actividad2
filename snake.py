@@ -53,6 +53,8 @@ def move():
     else:
         snake.pop(0)
 
+    move_food()
+
     clear()
 
     for body in snake:
@@ -62,6 +64,20 @@ def move():
     update()
     ontimer(move, 100)
 
+def move_food():
+    steps = [(10, 0), (-10, 0), (0, 10), (0, -10)]
+    candidates = []
+
+    for dx, dy in steps:
+        nxt = food.copy()
+        nxt.move(vector(dx, dy))
+
+        if inside(nxt) and nxt not in snake:
+            candidates.append(nxt)
+
+    if candidates:
+        nxt = choice(candidates)
+        food.x, food.y = nxt.x, nxt.y
 
 setup(420, 420, 370, 0)
 hideturtle()
