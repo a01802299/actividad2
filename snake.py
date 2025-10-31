@@ -1,39 +1,36 @@
-"""Snake, classic arcade game.
+# Descripcion: Juego Snake con modificaciones ligeras al gameplay
+# Autores: Armando Vasquez Ambrocio | A01669283
+#          Diana Karen Barrales Victorio | A018022299
+# Fecha de modificacion: 30/10/2025
 
-Exercises
-
-1. How do you make the snake faster or slower?
-2. How can you make the snake go around the edges?
-3. How would you move the food?
-4. Change the snake to respond to mouse clicks.
-"""
 
 from turtle import *
 from random import randrange, choice
 from freegames import square, vector
 
-
+# Configuracion de colores alteatorios para serpiente y comida
 colores = ['black', 'blue', 'green', 'purple', 'orange']
 
 snake_color= choice(colores)
 food_color = choice([c for c in colores if c!= snake_color])
 
+# Inicializacion de vectores 
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
 
-
+# Cambia la direccion del movimiento de la serpiente
 def change(x, y):
     """Change snake direction."""
     aim.x = x
     aim.y = y
 
-
+# Verifica si la cabeza de la serpiente se encuentra dentro de los limites. Regresa true si esta dentro del area.
 def inside(head):
     """Return True if head inside boundaries."""
     return -200 < head.x < 190 and -200 < head.y < 190
 
-
+# Mueve a la serpiente un segmendo hacia enfrente
 def move():
     """Move snake forward one segment."""
     head = snake[-1].copy()
@@ -64,6 +61,7 @@ def move():
     update()
     ontimer(move, 100)
 
+# Desplaza la comida un paso aleatorio mientras la serpiete avanza
 def move_food():
     steps = [(10, 0), (-10, 0), (0, 10), (0, -10)]
     candidates = []
@@ -79,10 +77,13 @@ def move_food():
         nxt = choice(candidates)
         food.x, food.y = nxt.x, nxt.y
 
+# Configuracion de ventana
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
 listen()
+
+# Controles
 onkey(lambda: change(10, 0), 'Right')
 onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
