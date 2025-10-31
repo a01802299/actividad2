@@ -1,3 +1,4 @@
+#Este repositorio contiene todas las modificaciones realizadas en el Juego de la Víbora.
 # Modificaciones de Snake.py
 - Se creó el código original del juego de la víbora.
 - Posteriormente, primero se realizó la instrucción de que cada vez que el juego corra, la serpiente y la comida tendrían colores diferentes a excepción del rojo, esto se realizó al crear funciones en el código llamadas colores, snake_color, food_color.
